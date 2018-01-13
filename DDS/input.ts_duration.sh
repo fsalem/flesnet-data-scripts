@@ -2,10 +2,10 @@
 
 source "common.sh"
 
-FILE_NAME="../../${array[0]}/${array[1]}.input.ts_duration.out"
+FILE_NAME="${array[0]}/${array[1]}.input.ts_duration.out"
 
 LABEL="set xlabel 'Timeslice'; set ylabel 'Duration in ms'; set title"
-CMD_F1="$LABEL 'Taken duration to send and receive the completion event after writing a timeslice in input node#${array[1]} in ${array[0]} [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
+CMD_F1="$LABEL 'Taken duration to send and receive the completion event after writing a timeslice in input node#${array[1]} in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
 if [ ${#array[@]} -eq "2" ]; then
 	CMD_F1="$CMD_F1'$FILE_NAME' using 1:(\$3/1000.0) with points title 'TS duration' "
 else

@@ -2,10 +2,10 @@
 
 source "common.sh"
 
-FILE_NAME="../../${array[0]}/${array[1]}.input.proposed_all_start_times.out"
+FILE_NAME="${array[0]}/${array[1]}.input.proposed_all_start_times.out"
 
 LABEL="set xlabel 'Interval index'; set ylabel 'Duration in ms'; set xtics 0,1; set title"
-CMD_F1="$LABEL 'Proposed starting times for intervals of Input node#${array[1]} in ${array[0]} [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
+CMD_F1="$LABEL 'Proposed starting times for intervals of Input node#${array[1]} in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
 
 COLUMN_COUNT=$(awk '{print NF}' $FILE_NAME | sort -nu | tail -n 1)
 
