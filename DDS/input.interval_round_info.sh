@@ -2,7 +2,7 @@
 
 source "common.sh"
 
-FILE_NAME="${array[0]}/${array[1]}.input.interval_round_info.out"
+FILE_NAME="$1/$2.input.interval_round_info.out"
 
 LABEL="set xlabel 'Round index'; set ylabel 'count'; set xtics 0,1; set xrange [0:1000]; set title"
 CMD_F1="$LABEL 'Blocking causes interval ${array[2]} in input node#${array[1]} in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "

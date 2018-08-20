@@ -22,7 +22,7 @@ LABEL=" set xlabel 'Timeslice no.' font 'Helvetica,20' offset 0,-5,0;
 	#set bmargin 10;
 	#set lmargin 18;
 	#set rmargin 7;"
-CMD="$LABEL set title 'Diff between first and last contribution arrival of each timeslice in ${array[0]} and ${array[2]}  [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
+CMD="$LABEL set title 'Diff between first and last contribution arrival of each timeslice in 32 and 64 nodes'; plot "
 
 IFS=' ' read -r -a array <<< "$@"
 COMPUTE_FILES=${array[1]}
@@ -41,7 +41,7 @@ done
 
 JOB_NAME2=`basename "${array[2]}"`
 
-CMD="$CMD '$FILE_NAME1' using 1:(\$2/1000) with points title 'Difference in $JOB_NAME', '$FILE_NAME2' using 1:(\$2/1000) with points title 'Difference in $JOB_NAME2' "
+CMD="$CMD '$FILE_NAME1' using 1:(\$2/1000) with points title 'Difference in 32 nodes', '$FILE_NAME2' using 1:(\$2/1000) with points title 'Difference in 64 nodes' "
 
 
 #echo "CMD=$CMD"
