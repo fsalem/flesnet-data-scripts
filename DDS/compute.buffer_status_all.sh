@@ -15,7 +15,7 @@ while [  $COUNTER -lt $2 ]; do
 	FILE_NAME="$1/$COUNTER.compute.buffer_status.out"
 	#echo "FILE=$FILE_NAME"
 	N=$(awk 'NR==1{print NF}' $FILE_NAME)
-	CMD_F1="$CMD_F1 for [i=2:$N] '$FILE_NAME' u 0:i w l title 'Conn$COUNTER-'.(i-2)"
+	CMD_F1="$CMD_F1 for [i=2:$N] '$FILE_NAME' u 0:i w l title 'C$COUNTER-'.(i-2)"
 	COUNTER=$((COUNTER+1))
 done
 #echo "CMD_F1=$CMD_F1"
