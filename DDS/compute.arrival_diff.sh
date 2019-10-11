@@ -8,7 +8,8 @@ rm $FILE_NAME
 LABEL=" set xlabel 'Timeslice no.' font 'Helvetica,35' offset 0,-5,0; 
 	set ylabel 'waiting time(ms)' font 'Helvetica,35' offset -8,0,0;
 	set xtics format '%0.s%c';
-	set ytics 0,10;" 
+	set ytics 0,10;
+	set lmargin 18;"
 	#set terminal pdf enhanced size 31cm,21cm; 
 	#set output 'different_arr_comp_times.pdf';
 	#set yrange [4:]; 
