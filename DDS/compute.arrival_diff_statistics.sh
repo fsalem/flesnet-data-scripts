@@ -42,9 +42,9 @@ fi
 
 
 ######## PARAMS ########## gnuplot -e "FILE='xyz.data'"
-NODES=64 #64, 128, 192, 384
-MAX_Y_RANGE=490 # 490, 1300, 2390, 5590
-AUTO_FREQ=100  # 100, 200, 400, 800
+NODES=16 #64, 128, 192, 384
+MAX_Y_RANGE=490 # 200, 1300, 2390, 5590
+AUTO_FREQ=5  # 100, 200, 400, 800
 ##########################
 
 
@@ -65,9 +65,9 @@ CMD="$LABEL set title 'Statistics about needed duration to complete a timeslice 
 
 
 CMD="$CMD '$STATS_FILE_NAME'  using  (\$7 == 1 ? \$7 : 1/0):(\$3/1000):(\$2/1000):(\$6/1000):(\$5/1000):xtic(1) with candlesticks ls 6 lw 0.8 notitle whiskerbars, \
-	   '$STATS_FILE_NAME' u (\$7 == 1 ? \$7 : 1/0):(\$4/1000):(\$4/1000):(\$4/1000):(\$4/1000):xtic(1)  with candlesticks lt -1 lw 1.8 notitle" #, \
-#	   '$STATS_FILE_NAME' using  (\$7 == 5 ? \$7 : 1/0):(\$3/1000):(\$2/1000):(\$6/1000):(\$5/1000):xtic(1) with candlesticks ls 5  lw 0.8 notitle whiskerbars, \
-#	   '$STATS_FILE_NAME' u (\$7 == 5 ? \$7 : 1/0):(\$4/1000):(\$4/1000):(\$4/1000):(\$4/1000):xtic(1)  with candlesticks lt -1 lw 1.8 notitle; "
+	   '$STATS_FILE_NAME' u (\$7 == 1 ? \$7 : 1/0):(\$4/1000):(\$4/1000):(\$4/1000):(\$4/1000):xtic(1)  with candlesticks lt -1 lw 1.8 notitle, \
+	   '$STATS_FILE_NAME' using  (\$7 == 5 ? \$7 : 1/0):(\$3/1000):(\$2/1000):(\$6/1000):(\$5/1000):xtic(1) with candlesticks ls 5  lw 0.8 notitle whiskerbars, \
+	   '$STATS_FILE_NAME' u (\$7 == 5 ? \$7 : 1/0):(\$4/1000):(\$4/1000):(\$4/1000):(\$4/1000):xtic(1)  with candlesticks lt -1 lw 1.8 notitle; "
 
 
 

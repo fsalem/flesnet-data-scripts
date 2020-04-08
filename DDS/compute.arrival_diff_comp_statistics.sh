@@ -34,7 +34,7 @@ if [ ! -f $STATS_FILE_NAME1 ]; then
 	THREEQUARTER_VALUE_1=$(awk -v num=$THREEQUARTER_1 'NR == num {print}' $ORDERED_FILE_NAME)
 	MAX_VALUE_1=$(tail -n 1 $ORDERED_FILE_NAME)
 
-	printf "\"Sample#1\"\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t1\n" "$MIN_VALUE_1" "$QUARTER_VALUE_1" "$HALF_VALUE_1" "$THREEQUARTER_VALUE_1" "$MAX_VALUE_1" > $STATS_FILE_NAME1
+	printf "\"With Failure\"\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t1\n" "$MIN_VALUE_1" "$QUARTER_VALUE_1" "$HALF_VALUE_1" "$THREEQUARTER_VALUE_1" "$MAX_VALUE_1" > $STATS_FILE_NAME1
 	
 	rm $ORDERED_FILE_NAME
 fi
@@ -69,15 +69,15 @@ if [ ! -f $STATS_FILE_NAME2 ]; then
         THREEQUARTER_VALUE_1=$(awk -v num=$THREEQUARTER_1 'NR == num {print}' $ORDERED_FILE_NAME)
         MAX_VALUE_1=$(tail -n 1 $ORDERED_FILE_NAME)
 
-        printf "\"Sample#2\"\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t5\n" "$MIN_VALUE_1" "$QUARTER_VALUE_1" "$HALF_VALUE_1" "$THREEQUARTER_VALUE_1" "$MAX_VALUE_1" > $STATS_FILE_NAME
+        printf "\"Without Failure\"\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t5\n" "$MIN_VALUE_1" "$QUARTER_VALUE_1" "$HALF_VALUE_1" "$THREEQUARTER_VALUE_1" "$MAX_VALUE_1" > $STATS_FILE_NAME2
 
         rm $ORDERED_FILE_NAME
 fi
 
 ######## PARAMS ########## gnuplot -e "FILE='xyz.data'"
-NODES=64 #64, 128, 192, 384
-MAX_Y_RANGE=490 # 490, 1300, 2390, 5590
-AUTO_FREQ=100  # 100, 200, 400, 800
+NODES=16 #64, 128, 192, 384
+MAX_Y_RANGE=300 # 490, 1300, 2390, 5590
+AUTO_FREQ=20  # 100, 200, 400, 800
 ##########################
 
 
@@ -94,7 +94,8 @@ LABEL=" set ylabel '';
 	set boxwidth 0.9;
 	set offset 5,5,0;
 	set xlabel 'Min, Max (bar: 10th - 90th percentile, median) ($NODES nodes)';"
-CMD="$LABEL set title 'Statistics about needed duration to complete a timeslice in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
+CMD="$LABEL; plot "
+# set title 'Statistics about needed duration to complete a timeslice in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
 
 
 CMD="$CMD '$STATS_FILE_NAME1'  using  (\$7 == 1 ? \$7 : 1/0):(\$3/1000):(\$2/1000):(\$6/1000):(\$5/1000):xtic(1) with candlesticks ls 6 lw 0.8 notitle whiskerbars, \
