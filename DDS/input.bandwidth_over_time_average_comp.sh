@@ -74,8 +74,9 @@ avg_generator "${array[2]}" "${array[3]}"
 AVG_FILE_NAME1="${array[0]}/${array[1]}.input.out.bw.avg"
 AVG_FILE_NAME2="${array[2]}/${array[3]}.input.out.bw.avg"
 
-LABEL="set xlabel 'Time in Seconds'; set ylabel 'Bandwidth'; set title"
-CMD_F1="$LABEL 'Bandwidth comparison overtime between ${array[0]} and ${array[2]} input node#${array[1]} and ${array[3]} in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
-CMD_F1="$CMD_F1'$AVG_FILE_NAME1' using 1:2 with linespoints title 'Bandwidth With Failure', '$AVG_FILE_NAME2' using 1:2 with linespoints title 'Bandwidth w/o Failure'; "
+LABEL="set xlabel 'Time in Seconds' font ',15'; set ylabel 'Bandwidth' font ',15'; set title"
+#CMD_F1="$LABEL 'Bandwidth comparison overtime between ${array[0]} and ${array[2]} input node#${array[1]} and ${array[3]} in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
+CMD_F1="$LABEL 'Bandwidth comparison overtime' font ',15'; plot "
+CMD_F1="$CMD_F1'$AVG_FILE_NAME1' using 1:2 with linespoints title 'FLESnet', '$AVG_FILE_NAME2' using 1:2 with linespoints title 'DFS'; "
 gnuplot -e "$CMD_F1; pause -1"
 

@@ -19,7 +19,7 @@ if [ ! -f $FILE_NAME ]; then
 done
 fi
 
-LABEL="set xlabel 'Time in Seconds'; set ylabel 'Bandwidth'; set title"
+LABEL="set tics font 'Helvetica,15';  set xlabel 'Time in Seconds' font 'Helvetica,20'; set ylabel 'Bandwidth (MB/s)' font 'Helvetica,20'; set ytics 1000; set title"
 CMD_F1="$LABEL 'Bandwidth overtime in input node#${array[1]} in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
 CMD_F1="$CMD_F1'$FILE_NAME' using 1:2 with linespoints title 'Bandwidth' "
 gnuplot -e "$CMD_F1; pause -1"

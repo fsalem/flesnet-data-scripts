@@ -44,7 +44,7 @@ fi
 ######## PARAMS ########## gnuplot -e "FILE='xyz.data'"
 NODES=16 #64, 128, 192, 384
 MAX_Y_RANGE=490 # 200, 1300, 2390, 5590
-AUTO_FREQ=5  # 100, 200, 400, 800
+AUTO_FREQ=200  # 100, 200, 400, 800
 ##########################
 
 
@@ -54,6 +54,7 @@ LABEL=" set ylabel '';
 	set ytics nomirror out scale 0;
 	set grid ytics mytics;
 	set yrange [-40: ];
+	set xrange [0:1000];
 	set ytics autofreq $AUTO_FREQ;
 	set style data histogram;
 	set style histogram cluster;

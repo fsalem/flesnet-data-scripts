@@ -2,10 +2,8 @@
 
 source "common.sh"
 
-LOG_KEY="compute.arrival_diff.out"
-#LOG_KEY="compute.timeslice_completion.out"
 # Input is number of compute nodes in space seperated
-FILE_NAME="${array[0]}/$LOG_KEY"
+FILE_NAME="${array[0]}/compute.arrival_diff.out"
 LABEL=" set xlabel 'Timeslice no.' font 'Helvetica,35' offset 0,-5,0; 
 	set ylabel 'waiting time(ms)' font 'Helvetica,35' offset -8,0,0;
 	set xtics format '%0.s%c';
@@ -27,12 +25,13 @@ LABEL=" set xlabel 'Timeslice no.' font 'Helvetica,35' offset 0,-5,0;
 CMD="$LABEL set title 'Diff between first and last contribution arrival of each timeslice in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
 
 if [ ! -f $FILE_NAME ]; then
+
 	IFS=' ' read -r -a array <<< "$@"
 	COMPUTE_FILES=${array[1]}
 	echo "COMPUTE_FILES=$COMPUTE_FILES"
 	TOTAL_ROW_COUNT=0
 
-	ROW_COUNT=$(cat "${array[0]}/0.$LOG_KEY" | wc -l)
+	ROW_COUNT=$(cat "${array[0]}/0.compute.arrival_diff.out" | wc -l)
 	echo "ROW_COUNT=$ROW_COUNT"
 	COUNTER=0
 	while [  $COUNTER -lt $COMPUTE_FILES ]; do
@@ -41,7 +40,8 @@ if [ ! -f $FILE_NAME ]; then
     		let COUNTER=COUNTER+1
 	done
 fi
-CMD="$CMD '$FILE_NAME' using 1:(\$2/1000) with points title 'Difference' "
+
+CMD="$CMD '$FILE_NAME' using 1:(\$3/1000) with points title 'Difference' "
 
 TOTAL_ROW_COUNT=$((COMPUTE_FILES*ROW_COUNT))
 

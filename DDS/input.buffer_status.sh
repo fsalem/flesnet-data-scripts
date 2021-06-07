@@ -20,7 +20,8 @@ CMD_F1="$CMD_F1 plot "
 
 
 echo "FILE=$FILE_NAME"
-CMD_F1="$CMD_F1 '$FILE_NAME' u 0:3 w l title 'Sending';"
+CMD_F1="$CMD_F1 '$FILE_NAME' u 0:(100-\$5) w l title '100-Unused';"
+#CMD_F1="$CMD_F1 '$FILE_NAME' u 0:3 w l title 'Sending';"
 #CMD_F1="$CMD_F1 '$FILE_NAME' u 2 title 'Used',"
 #CMD_F1="$CMD_F1 '$FILE_NAME' u 3 title 'Sending',"
 #CMD_F1="$CMD_F1 '$FILE_NAME' u 4 title 'Freeing',"
