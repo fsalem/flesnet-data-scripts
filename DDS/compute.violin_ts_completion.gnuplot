@@ -1,14 +1,14 @@
 #!/usr/bin/gnuplot
 
 ######## PARAMS ########## gnuplot -e "FILE='xyz.data'"
-NODES=10#64, 128, 192, 384
+NODES=10 #64, 128, 192, 384
 ##########################
-END_Y_RANGE=5590 #490, 1300, 2390, 5590
-AUTO_FREQ=800 #100, 200, 400, 800
+END_Y_RANGE=490 #490, 1300, 2390, 5590
+AUTO_FREQ=100 #100, 200, 400, 800
 #DFS="data/FLESnet/DFS.ts_comp_dur.".NODES."N.sample.data"
-DFS="/Volumes/DataFiles-D/Lise/FLESnet/lise-6036665-fles_libfabric_DFS_gitlab/"."/compute.arrival_diff.out"
+DFS="/Volumes/DataFiles-D/Lise/FLESnet/lise-6165999-fles_libfabric_DFS/"
 #FLES="data/FLESnet/FLES.ts_comp_dur.".NODES."N.sample.data"
-FLES="/Volumes/DataFiles-D/Lise/FLESnet/lise-6036666-fles_libfabric_original_Barrier/"."/compute.arrival_diff.out"
+FLES="/Volumes/DataFiles-D/Lise/FLESnet/lise-6165996-fles_libfabric_DFS/"
 ####
 
 ###### See comments below for the steps to produce such a plot ######
@@ -73,7 +73,7 @@ unset xtics
 set xtics nomirror out
 #set yrange [.02:]
 
-if ( 64 == NODES || 10 == NODES ) {
+if ( 64 == NODES ) {
    dfsweight=.013 #64, 1 million entries
    flesweight=.013 #64, 1 million entries
    dfsdensitybw=3 #64, groups of four

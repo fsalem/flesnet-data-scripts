@@ -53,7 +53,8 @@ avg_generator() {
 			I=0
 		    else
 			INT=($(printf "%.0f\n" "$line"))
-			if [[ "$INT" -eq "0" || ( "$COUNT" -ge "200" && "$COUNT" -le "220" ) ]]; then
+			#if [[ "$INT" -eq "0" || ( "$COUNT" -ge "200" && "$COUNT" -le "220" ) ]]; then
+			if [[ "$INT" -eq "0" ]]; then
 			    echo "line $INT"
 			     echo "$COUNT		$INT" >> $AVG_FILE_NAME
 			else

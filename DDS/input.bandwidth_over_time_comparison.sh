@@ -39,7 +39,7 @@ fi
 
 
 LABEL="set xlabel 'Time in Seconds'; set ylabel 'Bandwidth'; set title"
-CMD_F1="$LABEL 'Bandwidth overtime comparison in $JOB_NAME [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s] [$DATE]'; plot "
+CMD_F1="$LABEL 'Bandwidth overtime comparison [$INPUT_COUNT INs, $COMPUTE_COUNT CNs, $INPUT_BW GB/s]'; plot "
 CMD_F1="$CMD_F1'$FILE_NAME1' using 1:2 with linespoints title 'FLESnet', '$FILE_NAME2' using 1:2 with linespoints title 'DFS'  "
 gnuplot -e "$CMD_F1; pause -1"
 

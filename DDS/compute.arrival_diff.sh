@@ -13,11 +13,11 @@ LABEL=" set xlabel 'Timeslice no.' font 'Helvetica,35' offset 0,-5,0;
 	set lmargin 18;"
 	#set terminal pdf enhanced size 31cm,21cm; 
 	#set output 'different_arr_comp_times.pdf';
-	#set yrange [4:]; 
+	set yrange [0:]; 
 	#set xrange [0:101000]; 
 	#set tics font 'Helvetica,35'; 
 	#set key font 'Helvetica,35';
-	#set xtics autofreq 20000;
+	set ytics autofreq 50;
 	#set xtics offset 0,-2,0;
 	#set ytics offset -1,0,0;
 	
